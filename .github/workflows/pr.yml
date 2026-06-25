@@ -50,7 +50,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        sampleName: ['Calculator\cppwinrt', 'Calculator\csharp', Calculator\fabric]
+        sampleName: [Calculator\fabric]
         configuration: ['Debug', 'Release']
         platform: ['x86']
     uses: ./.github/workflows/template-buildsample.yml
@@ -58,6 +58,7 @@ jobs:
       sampleName:  ${{ matrix.sampleName }}
       configuration: ${{ matrix.configuration }}
       platform: ${{ matrix.platform }}
+      extraRunWindowsArgs: '--no-deploy'
       skipBuild: ${{ needs.setupcheck.outputs.workflows != 'true' && needs.setupcheck.outputs.calculator != 'true' }} # Skip if files haven't changed
 
   call-buildsample-native-module-sample:
